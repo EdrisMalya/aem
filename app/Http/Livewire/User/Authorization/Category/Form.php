@@ -14,9 +14,7 @@ class Form extends Component
 
     public function mount($model_id)
     {
-        if (!User::allow()){
-            abort(401);
-        }
+        auth()->user()->allow('v');
         $this->model_id = $model_id;
         if ($this->model_id!=0){
             $category = AuthorizationCategory::find($this->model_id);

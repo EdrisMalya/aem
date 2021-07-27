@@ -44,6 +44,7 @@
 }
 
 document.addEventListener("turbolinks:load", function () {
+    $('#scroll').height(screen.height+'px');
     $(".aem-sidebar-items").find('.active').parent('ul').show();
     var paretns = $('.aem-sidebar-items .active').parents('ul');
     var paretns2 = $('.active').parents('li').find('.parent').addClass('lactive');

@@ -5,7 +5,7 @@
     <x-slot name="js">
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     </x-slot>
-    <x-layout title="Create user" active="user.index">
+    <x-layout :title="$user->email==null?'Create user':'Edit user'" active="user.index">
         <nav class="pl-5 breadcrumb-nav grey lighten-4 z-depth-0 border-bottom" style="z-index:1">
             <div class="nav-wrapper">
                 <div class="col s12">
@@ -19,7 +19,7 @@
             <div class="row mx-2">
                 <div class="col s12 center mt-2">
                     <span wire:ignore id="profile-img" class="border">
-                        <img src="" width="100%" id="image" alt="">
+                        <img src="{{$img}}" width="100%" id="image" alt="">
                     </span>
                     <br>
                     <label for="img_input" class="btn waves-effect btn-small transparent btn-floating z-depth-0">
@@ -52,13 +52,14 @@
                             </div>
                             <div class="col s12 m6">
                                 <x-select placeholder="Manager" name="manager_id">
+                                    <option value="0">Null</option>
                                     @foreach($users as $user)
                                         <option value="{{$user->id}}">{{$user->name}}</option>
                                     @endforeach
                                 </x-select>
                             </div>
                             <div class="col s12">
-                                <x-input name="email" label="Email" icon="email" />
+                                <x-input name="email" label="Email" icon="email" :disabled="$email!=null?true:false" />
                             </div>
                             <div class="col s12 m6">
                                 <x-input name="password" label="Password" icon="lock_outline" type="password" />

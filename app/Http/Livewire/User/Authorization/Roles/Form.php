@@ -16,9 +16,7 @@ class Form extends Component
 
     public function mount($rule_id,$category_id)
     {
-        if (!User::allow()){
-            abort(401);
-        }
+        auth()->user()->allow('v');
         $this->rule_id = $rule_id;
         $this->category_id = $category_id;
         if ($rule_id!=0){

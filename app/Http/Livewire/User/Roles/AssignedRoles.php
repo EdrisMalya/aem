@@ -18,9 +18,7 @@ class AssignedRoles extends Component
 
     public function mount(Role $role)
     {
-        if (!User::allow()){
-            abort(401);
-        }
+        auth()->user()->allow('v');
         $this->selected_roles = \DB::table('assigned_rules')->where('rule_id','=',$role->id)->pluck('role_id')->toArray();
         $this->role = $role;
         $this->categories = AuthorizationCategory::all();

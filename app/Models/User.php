@@ -38,21 +38,53 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public static function allow($roles = null, $category = null)
+    public function allow($level='c', $category = null, $roles = null)
     {
         if (Auth::check()){
             if (\auth()->id() == 1){
                 return true;
             }else{
-                return false;
+                $category_obj = AuthorizationCategory::whereName($category)->first();
+                if ($category_obj==null){
+                    return self::check($level);
+                }else{
+                    $rules = Rule::whereIn('key',$roles)->where('authorization_category_id',$category_obj->id)->pluck('id')->toArray();
+                    if (count($rules) > 0){
+                        $user_role_id = \auth()->user()->role_id;
+                        $assigned_role_count = AssignedRules::whereRuleId($user_role_id)->whereIn('role_id',$rules)->count();
+                        if ($assigned_role_count > 0){
+                            return true;
+                        }else{
+                            return self::check($level);
+                        }
+                    }
+                }
             }
         }else{
             return redirect()->to(route('login'));
         }
     }
 
+    public static function check($level)
+    {
+        switch ($level){
+            case 'c':
+                abort(401);
+                break;
+            case 'v':
+                return false;
+            default:
+                abort(401);
+        }
+    }
+
     public function role()
     {
         return $this->belongsTo(Role::class);
+    }
+
+    public function manager()
+    {
+        return User::find($this->user_id);
     }
 }

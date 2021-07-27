@@ -8,11 +8,24 @@ use Livewire\Component;
 class Index extends Component
 {
     public $users = [];
+    public $showDelete = false;
+    public $user_id;
+
+    public function deleteForm($id)
+    {
+        $this->showDelete = true;
+        $this->user_id = $id;
+    }
+    public function delete()
+    {
+        auth()->user()->allow('d','Users',['DeleteUser']);
+        User::find($this->user_id)->delete();
+        session()->flash('message','Deleted successfully');
+        return redirect()->to(route('user.index'));
+    }
     public function mount()
     {
-        if (!User::allow()){
-            abort(401);
-        }
+        auth()->user()->allow('c','Users',['ViewUsers']);
         $this->users = User::where('id','!=',auth()->id())->get();
     }
     public function render()

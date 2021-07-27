@@ -13,7 +13,9 @@
                 <h5 class="d-inline-block">
                     Authorizations
                 </h5>
+                @if(auth()->user()->allow('v','Authorizations',['CreateCategory']))
                 <button wire:loading.attr="disabled" wire:loading.attr="disabled" wire:click="createCategory" class="btn waves-effect transparent black-text browser-default mt-3 right">Add new category <i class="material-icons right">add</i></button>
+                @endif
             </div>
             <div class="col s12">
                 @if(count($categories) < 1)
@@ -27,16 +29,24 @@
                                 <div class="collapsible-header">
                                     <i class="material-icons">filter_list</i>{{$category->name}}
                                     <div style="margin-right: 0; position: absolute; right: 50px;">
+                                        @if(auth()->user()->allow('v','Authorizations',['EditCategory']))
                                         <button x-data x-ref="button2__{{$category->id}}" @click="$(event.target).html(`<span class='spinner-border spinner-border-sm'></span>`).prop('disabled',true)" wire:click="editCategory('{{$category->id}}')" class="btn waves-effect transparent z-depth-0 btn-floating btn-small black-text">
                                             <i @click="$refs.button2__{{$category->id}}.click()" class="material-icons tiny orange-text">edit</i>
                                         </button>
+                                        @endif
+                                        @if(auth()->user()->allow('v','Authorizations',['DeleteCategory']))
                                         <button x-data x-ref="button__{{$category->id}}" @click="$(event.target).html(`<span class='spinner-border spinner-border-sm'></span>`).prop('disabled',true)" wire:click="ConfirmDeleteCategory({{$category->id}})" class="btn waves-effect transparent z-depth-0 btn-floating btn-small black-text">
                                             <i @click="$refs.button__{{$category->id}}.click()" class="material-icons tiny red-text">delete</i>
                                         </button>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="collapsible-body">
-                                    @livewire('user.authorization.roles.index',['category'=>$category->id], key($category->id))
+                                    @if(auth()->user()->allow('v','Authorizations',['ViewRoles']))
+                                        @livewire('user.authorization.roles.index',['category'=>$category->id], key($category->id))
+                                    @else
+                                        <p align="center" class="red-text">You dont have permission to see roles</p>
+                                    @endif
                                 </div>
                             </li>
                         @endforeach

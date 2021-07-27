@@ -1,8 +1,9 @@
-<table class="stripe row-border compact"
-    x-data
-       {{$attributes}}
-    @if($buttons)
-        x-init="
+<div wire:ignore>
+    <table class="stripe row-border compact " style="display: none"
+           x-data="{show:false}"
+           {{$attributes}}
+           @if($buttons)
+           x-init="
             setTimeout(()=>{
                 $('#{{$attributes['id']}}').DataTable({
                     'drawCallback': function (settings) {
@@ -12,6 +13,7 @@
                         $('input').addClass('browser-default');
                         $('.dataTables_wrapper').find('select').addClass('browser-default c-select');
                         $('.dt-button').removeClass('dt-button').addClass('btn waves-effect transparent black-text btn-small mb-4');
+                        $('.stripe').show();
                     },
                     responsive: true,
                     dom: 'Bfrtip',
@@ -54,8 +56,8 @@
                 });
             },500)
         "
-    @else
-       x-init="
+           @else
+           x-init="
             setTimeout(()=>{
                 $('#{{$attributes['id']}}').DataTable({
                     'drawCallback': function (settings) {
@@ -70,7 +72,8 @@
                 });
             },500)
         "
-    @endif
->
-    {{$slot}}
-</table>
+        @endif
+    >
+        {{$slot}}
+    </table>
+</div>

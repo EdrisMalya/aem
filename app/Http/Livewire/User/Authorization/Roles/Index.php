@@ -19,9 +19,7 @@ class Index extends Component
 
     public function refresh(AuthorizationCategory $category_id)
     {
-        if (!User::allow()){
-            abort(401);
-        }
+        auth()->user()->allow('v');
         $this->ruleForm = false;
         $this->category = $category_id;
         $this->showEditForm = false;

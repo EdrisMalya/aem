@@ -14,6 +14,12 @@ class Index extends Component
     public $categoryId;
     protected $listeners = ['closeForm','refreshCategories'];
 
+    public function mount()
+    {
+        auth()->user()->allow('c','Authorizations',['ViewAuthorizations']);
+        $this->categories = AuthorizationCategory::all();
+    }
+
     public function closeForm(){
         $this->categoryForm = false;
     }
@@ -26,26 +32,22 @@ class Index extends Component
 
     public function createCategory()
     {
+        auth()->user()->allow('c','Authorizations',['CreateCategory']);
         $this->categoryId = 0;
         $this->categoryForm = true;
     }
 
-    public function mount()
-    {
-        if (!User::allow()){
-            abort(401);
-        }
-        $this->categories = AuthorizationCategory::all();
-    }
 
     public function editCategory($id)
     {
+        auth()->user()->allow('c','Rules',['EditCategory']);
         $this->categoryId = $id;
         $this->categoryForm = true;
     }
 
     public function ConfirmDeleteCategory($id)
     {
+        auth()->user()->allow('c','Authorizations',['DeleteCategory']);
         $this->categoryId = $id;
         $this->showDelete = true;
     }

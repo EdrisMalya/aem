@@ -15,13 +15,13 @@
         <li class="px-3">
             <a href="#dropdown1"  class="black-text browser-default waves-effect waves-block dropdown-trigger">
                 <div style="display:flex; flex-direction:row" class="mr-4">
-                        <span class="profile-avatar mt-2">
-                            @if (auth()->user()->profile != null)
-                                <img width="100%" src="{{asset('storage/'.auth()->user()->image)}}]" class="profile-user-img" />
-                            @else
-                                <img width="100%" src="{{asset('img/user.png')}}" class="profile-user-img"/>
-                            @endif
-                        </span>
+                    <span class="profile-avatar mt-2">
+                        @if (auth()->user()->profile != null)
+                            <img width="100%" src="{{asset('storage/'.auth()->user()->profile)}}" class="profile-user-img" />
+                        @else
+                            <img width="100%" src="{{asset('img/user.png')}}" class="profile-user-img"/>
+                        @endif
+                    </span>
                     <div class="ml-3">
                         {{auth()->user()->name}}
                         {{auth()->user()->last_name}}
@@ -31,14 +31,8 @@
             </a>
             <ul id='dropdown1' class='dropdown-content'>
                 <li>
-                    <a class="black-text modal-trigger" href="#change_password_modal">
-                        <i class="material-icons left">lock_outline</i>
-                        Change password
-                    </a>
-                </li>
-                <li>
-                    <a class="black-text" href="@Url.Action("MyProfile","Manage")">
-                    <i class="material-icons left">person_outline   </i>
+                    <a class="black-text" href="{{route('profile')}}">
+                        <i class="material-icons left">person_outline</i>
                     Profile
                     </a>
                 </li>
@@ -50,35 +44,9 @@
         </li>
     </ul>
 </nav>
-<div class="modal modal-fixed-footer" id="change_password_modal">
-    <div class="modal-content">
-        <div class="row mx-2">
-            <div class="col s12">
-                <h5 class="card-title">Change password</h5>
-            </div>
-            <div class="col s12 input-field">
-                <input type="password" name="OldPassword" id="OldPassword" required />
-                <label for="OldPassword">Old password</label>
-            </div>
-            <div class="col s12 input-field">
-                <input type="password" name="NewPassword" id="NewPassword" required />
-                <label for="NewPassword">New password</label>
-            </div>
-            <div class="col s12 input-field">
-                <input type="password" name="ConfirmPassword" id="ConfirmPassword" required />
-                <label for="ConfirmPassword">Confirm password</label>
-            </div>
-        </div>
-    </div>
-    <div class="modal-footer">
-        <button type="submit" class="btn waves-effect btn-small transparent black-text">
-            Save <i class="material-icons right green-text">save</i>
-        </button>
-        <button type="button" class="btn waves-effect btn-small transparent modal-close black-text">
-            Cancel <i class="material-icons right red-text">close</i>
-        </button>
-    </div>
-</div>
+<form action="{{route('logout')}}" id="logoutForm" method="post">
+    @csrf
+</form>
 @include('inc.navbar')
 <div id="content" {{$attributes}}>
     {{$slot}}

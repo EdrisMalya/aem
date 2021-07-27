@@ -17,9 +17,7 @@ class Index extends Component
 
     public function mount()
     {
-        if (!User::allow()){
-            abort(401);
-        }
+        auth()->user()->allow('c','Rules',['ViewRules']);
         $this->roles = Role::all();
     }
 
@@ -41,6 +39,7 @@ class Index extends Component
 
     public function deleteModal($role_id)
     {
+        auth()->user()->allow('c','Rules',['DeleteRules']);
         $this->role_id = $role_id;
         $this->deleteConfirm = true;
     }

@@ -13,9 +13,7 @@ class Form extends Component
 
     public function mount()
     {
-        if (!User::allow()){
-            abort(401);
-        }
+        auth()->user()->allow('v','Rules',['CreateRules']);
     }
     public function closeForm()
     {

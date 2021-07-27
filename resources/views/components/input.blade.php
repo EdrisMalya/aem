@@ -2,13 +2,14 @@
     'name',
     'label',
     'icon',
-    'type'
+    'type',
+    'disabled' => false,
 ])
 <div wire:ignore class="input-field">
     @if(isset($icon))
         <i class="material-icons prefix">{{$icon}}</i>
     @endif
-    <input type="{{$type??'text'}}" wire:model="{{$name}}" id="{{$name}}" {{$attributes}}>
+    <input type="{{$type??'text'}}" wire:model="{{$name}}" {{$disabled?'disabled':''}} id="{{$name}}" {{$attributes}}>
     <label for="{{$name}}">{{$label}}</label>
 </div>
 @error($name)

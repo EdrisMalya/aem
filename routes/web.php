@@ -23,7 +23,8 @@ Route::group(['middleware' => ['auth']], function(){
    Route::get('authorization',App\Http\Livewire\User\Authorization\Index::class)->name('authorization.index');
    Route::get('roles',\App\Http\Livewire\User\Roles\Index::class)->name('roles.index');
    Route::get('assigned/roles/{role}',\App\Http\Livewire\User\Roles\AssignedRoles::class)->name('assigned.roles');
-   Route::get('create/user/{user?}', \App\Http\Livewire\User\Form::class)->name('create.user');
+   Route::get('user/{user?}', \App\Http\Livewire\User\Form::class)->name('user');
+   Route::get('profile',\App\Http\Livewire\User\Profile::class)->name('profile');
 });
 
 Auth::routes([

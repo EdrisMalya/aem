@@ -13,7 +13,9 @@
                 <h5 class="d-inline-block">
                     Roles
                 </h5>
-                <button wire:loading.attr="disabled" wire:loading.attr="disabled" wire:click="$set('createFrom',true)" class="btn waves-effect transparent black-text browser-default mt-3 right">Add new role <i class="material-icons right">add</i></button>
+                @if(auth()->user()->allow('v','Rules',['CreateRules']))
+                    <button wire:loading.attr="disabled" wire:loading.attr="disabled" wire:click="$set('createFrom',true)" class="btn waves-effect transparent black-text browser-default mt-3 right">Add new role <i class="material-icons right">add</i></button>
+                @endif
             </div>
             <div class="col s12">
                 @if($roles->count() < 1)
@@ -27,7 +29,9 @@
                             <a class="black-text" href="{{route('assigned.roles',$role)}}">
                                 {{$role->name}}
                             </a>
+                            @if(auth()->user()->allow('v','Rules',['DeleteRules']))
                             <i class="material-icons" wire:click="deleteModal('{{$role->id}}')" style="cursor: pointer; float: right; font-size: 16px; line-height: 32px; padding-left: 8px;">delete</i>
+                            @endif
                         </div>
                     @endforeach
                 @endif
