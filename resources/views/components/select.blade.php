@@ -1,6 +1,6 @@
 <div wire:ignore>
     <label for="role"><b>{{ucfirst(str_replace(['id','_','-'],['','',''],strtolower($name)))}}</b></label>
-    <select placeholder="{{$placeholder}}" class="browser-default" x-data="" x-ref="{{$name}}" x-init="()=>{
+    <select placeholder="{{$placeholder}}" {{$attributes    }} class="browser-default" x-data="" x-ref="{{$name}}" x-init="()=>{
             setTimeout(()=>{
                 $($refs.{{$name}}).selectize();
             },100);

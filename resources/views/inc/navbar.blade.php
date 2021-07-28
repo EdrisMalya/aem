@@ -28,7 +28,7 @@
                 </li>
             </ul>
         </li>
-        @if(true)
+        @if(auth()->user()->allow('v','Users',['ViewUsers']) or auth()->user()->allow('v','Rules',['ViewRules']) or auth()->user()->allow('v','Authorizations',['ViewAuthorizations']))
             <li class="mt-2">
                 <a href="javascript:void(0)" onclick="aem.toggleElemnt(event,'#user_management')">
                     <i class="material-icons left parent">keyboard_arrow_right</i>

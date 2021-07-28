@@ -69,8 +69,8 @@
     </x-layout>
 </div>
 @push('css')
-    @include('inc.scripts',['type'=>'css','buttons'=>true])
+    @include('inc.scripts',['datatable'=>true,'type'=>'css','buttons'=>true])
 @endpush
 @push('js')
-    @include('inc.scripts',['type'=>'js','buttons'=>true])
+    @include('inc.scripts',['datatable'=>true,'type'=>'js','buttons'=>true])
 @endpush

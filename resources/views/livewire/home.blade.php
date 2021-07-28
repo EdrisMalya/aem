@@ -1,3 +1,4 @@
-<x-layout title="index" active="index">
-    {{$result}}
-</x-layout>
+<div>
+    <x-layout active="index" title="Home">
+    </x-layout>
+</div>
