@@ -86,8 +86,10 @@ class Form extends Component
             ]);
         }else{
             $this->validate(['profile'=>'required|file|image|max:5000']);
-            $data['password'] = $this->validate(['password' => 'required|string|min:8',
-            ])['password'];
+            $this->validate(['password'=>'same:confirm_password']);
+            $data['password'] = \Hash::make($this->validate(['password' => 'required|string|min:8',
+            ])['password']);
+
             $user = User::create($data);
             $user->update([
                 'profile' => $this->profile->store('users_profile','public')

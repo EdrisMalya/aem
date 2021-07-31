@@ -68,9 +68,4 @@
         @endif
     </x-layout>
 </div>
-@push('css')
-    @include('inc.scripts',['datatable'=>true,'type'=>'css','buttons'=>true])
-@endpush
-@push('js')
-    @include('inc.scripts',['datatable'=>true,'type'=>'js','buttons'=>true])
-@endpush
+@include('inc.scripts',['datatable'=>true,'buttons'=>true])

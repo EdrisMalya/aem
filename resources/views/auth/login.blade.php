@@ -25,7 +25,7 @@
                                     <div class="col s12 input-field">
                                         <i class="material-icons prefix">lock_outline</i>
                                         <input type="password" id="password" required name="password" class="@error('password') invalid @enderror" value="{{old('password')}}">
-                                        <label for="password">Email</label>
+                                        <label for="password">Password</label>
                                         @error('password')
                                             <blockquote class="ml-5">
                                                 {{$message}}

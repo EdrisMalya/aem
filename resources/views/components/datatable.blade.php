@@ -1,5 +1,5 @@
 <div wire:ignore>
-    <table class="stripe row-border compact " style="display: none"
+    <table class="stripe row-border compact"
            x-data="{show:false}"
            {{$attributes}}
            @if($buttons)
@@ -7,7 +7,6 @@
             setTimeout(()=>{
                 $('#{{$attributes['id']}}').DataTable({
                     'drawCallback': function (settings) {
-                        $('.table').show();
                         $('#example_info').addClass('mt-3');
                         $('#example_paginate').addClass('mt-3');
                         $('input').addClass('browser-default');
@@ -54,7 +53,8 @@
                         visibile: false
                     }]
                 });
-            },500)
+                 $('.table').show();
+            },100)
         "
            @else
            x-init="
