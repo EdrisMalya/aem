@@ -1,3 +1,4 @@
+@include('inc.scripts',['ckeditor'=>true])
 <div wire:ignore>
     <label for="description">
         <b>{{$label??'Description'}}</b>

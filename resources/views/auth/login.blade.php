@@ -1,4 +1,4 @@
-<x-app>
+<x-base title="Login" active="">
     <x-slot name="title">Login</x-slot>
     <div class="container">
         <div class="row">
@@ -112,4 +112,4 @@
             </div>
         </div>--}}
     </div>
-</x-app>
+</x-base>

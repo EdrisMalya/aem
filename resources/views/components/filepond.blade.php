@@ -1,3 +1,4 @@
+@include('inc.scripts',['filepond'=>true])
 <p>
     <b>{{$label??''}}</b>
 </p>

@@ -46,3 +46,21 @@
         <script src="{{asset('plugins/sweetalert/sweetalert.min.js')}}"></script>
     @endpush
 @endif
+@if(isset($selectize) and $selectize)
+    @push('js')
+        <script src="{{asset('plugins/selectize/selectize.min.js')}}"></script>
+    @endpush
+    @push('css')
+        <link rel="stylesheet" href="{{asset('plugins/selectize/selectize.min.css')}}">
+    @endpush
+@endif
+
+@if(isset($datepicker) and $datepicker)
+    @push('js')
+        <script src="{{asset('plugins/pickaday/moment.js')}}"></script>
+        <script src="{{asset('plugins/pickaday/pikaday.min.js')}}"></script>
+    @endpush
+    @push('css')
+        <link rel="stylesheet" href="{{asset('plugins/pickaday/pikaday.min.css')}}">
+    @endpush
+@endif

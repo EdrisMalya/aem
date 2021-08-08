@@ -52,10 +52,13 @@ class AssignedRoles extends Component
 
     public function levelClicked($id)
     {
-        AssignedRules::where([
+        $result = AssignedRules::where([
             'rule_id' => $this->role->id,
             'role_id' => $id
         ])->delete();
+        if($result){
+            $this->selected_roles = \DB::table('assigned_rules')->where('rule_id','=',$this->role->id)->pluck('role_id')->toArray();
+        }
     }
 
     public function render()

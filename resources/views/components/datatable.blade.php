@@ -1,5 +1,6 @@
+@include('inc.scripts',['datatable'=>true,'buttons'=>$buttons])
 <div wire:ignore>
-    <table class="stripe row-border compact"
+    <table class="stripe display row-border compact hover" style="display: none"
            x-data="{show:false}"
            {{$attributes}}
            @if($buttons)
@@ -54,7 +55,7 @@
                     }]
                 });
                  $('.table').show();
-            },100)
+            },300)
         "
            @else
            x-init="

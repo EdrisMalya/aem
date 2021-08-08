@@ -1,3 +1,4 @@
+@include('inc.scripts',['selectize'=>true])
 <div wire:ignore>
     <label for="role"><b>{{ucfirst(str_replace(['id','_','-'],['','',''],strtolower($name)))}}</b></label>
     <select placeholder="{{$placeholder}}" {{$attributes    }} class="browser-default" x-data="" x-ref="{{$name}}" x-init="()=>{
