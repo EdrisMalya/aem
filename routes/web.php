@@ -18,13 +18,19 @@ Route::get('/home', function () {
 });
 
 Route::group(['middleware' => ['auth']], function(){
-   Route::get('/', \App\Http\Livewire\Home::class)->name('index');
-   Route::get('users',\App\Http\Livewire\User\Index::class)->name('user.index');
-   Route::get('authorization',App\Http\Livewire\User\Authorization\Index::class)->name('authorization.index');
-   Route::get('roles',\App\Http\Livewire\User\Roles\Index::class)->name('roles.index');
-   Route::get('assigned/roles/{role}',\App\Http\Livewire\User\Roles\AssignedRoles::class)->name('assigned.roles');
-   Route::get('user/{user?}', \App\Http\Livewire\User\Form::class)->name('user');
-   Route::get('profile',\App\Http\Livewire\User\Profile::class)->name('profile');
+    Route::get('/', \App\Http\Livewire\Home::class)->name('index');
+    Route::get('users',\App\Http\Livewire\User\Index::class)->name('user.index');
+    Route::get('authorization',App\Http\Livewire\User\Authorization\Index::class)->name('authorization.index');
+    Route::get('roles',\App\Http\Livewire\User\Roles\Index::class)->name('roles.index');
+    Route::get('assigned/roles/{role}',\App\Http\Livewire\User\Roles\AssignedRoles::class)->name('assigned.roles');
+    Route::get('user/{user?}', \App\Http\Livewire\User\Form::class)->name('user');
+    Route::get('profile',\App\Http\Livewire\User\Profile::class)->name('profile');
+
+    Route::get('contacts',\App\Http\Livewire\Contacts\Index::class)->name('contact.index');
+    Route::get('crud/{model}',[\App\Http\Controllers\Helper::class,'crud']);
+    
+    Route::get('companies',\App\Http\Livewire\Companies\Index::class)->name('company.index');
+    //{{}}
 });
 
 Auth::routes([

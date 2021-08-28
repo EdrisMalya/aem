@@ -4,9 +4,11 @@ namespace Database\Seeders;
 
 use App\Models\AssignedRules;
 use App\Models\AuthorizationCategory;
+use App\Models\Contact;
 use App\Models\Role;
 use App\Models\Rule;
 use App\Models\User;
+use Database\Factories\ContactFactory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -214,5 +216,6 @@ class DatabaseSeeder extends Seeder
                 "role_id" => 37,
             ],
         ]);
+        Contact::factory(10000)->create();
     }
 }

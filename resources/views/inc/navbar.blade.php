@@ -26,6 +26,18 @@
                         Index
                     </a>
                 </li>
+                <li class="mt-2 {{$active=="contacts"?'active':''}}">
+                    <a href="{{route('contact.index')}}">
+                        <i class="material-icons left">remove</i>
+                        Contacts
+                    </a>
+                </li>
+                <li class="mt-2 {{$active=="customers"?'active':''}}">
+                    <a href="{{route('company.index')}}">
+                        <i class="material-icons left">remove</i>
+                        Company
+                    </a>
+                </li>
             </ul>
         </li>
         @if(auth()->user()->allow('v','Users',['ViewUsers']) or auth()->user()->allow('v','Rules',['ViewRules']) or auth()->user()->allow('v','Authorizations',['ViewAuthorizations']))
