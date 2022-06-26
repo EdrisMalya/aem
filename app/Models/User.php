@@ -87,4 +87,9 @@ class User extends Authenticatable
     {
         return User::find($this->user_id);
     }
+
+    public function tasks()
+    {
+        return $this->hasMany(MyWork::class);
+    }
 }

@@ -25,6 +25,8 @@ Route::group(['middleware' => ['auth']], function(){
    Route::get('assigned/roles/{role}',\App\Http\Livewire\User\Roles\AssignedRoles::class)->name('assigned.roles');
    Route::get('user/{user?}', \App\Http\Livewire\User\Form::class)->name('user');
    Route::get('profile',\App\Http\Livewire\User\Profile::class)->name('profile');
+
+   Route::get('report',\App\Http\Livewire\Report::class)->name('report');
 });
 
 Auth::routes([

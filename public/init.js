@@ -1,15 +1,16 @@
 ﻿$(document).ready(function () {
-    /*$('.sidenav').sidenav();
-    $('.collapsible').collapsible();*/
+    /*$('.sidenav').sidenav();*/
+    $('.collapsible').collapsible();
     $('.dropdown-trigger').dropdown({
         constrainWidth: false,
         coverTrigger: false
     });
-    /*$('.datepicker').datepicker({
+    $('.datepicker').datepicker({
         format: 'mm/dd/yyyy',
         autoClose: true,
         container: 'body'
     });
+    /*
     $('.modal').modal({
         preventScrolling: false
     });

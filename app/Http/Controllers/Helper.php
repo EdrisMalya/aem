@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MyWork;
 use Illuminate\Http\Request;
 
 class Helper extends Controller
@@ -13,5 +14,17 @@ class Helper extends Controller
         }else{
             return false;
         }
+    }
+    public static function yearTotalWorks($user_id,$year){
+        return MyWork::where([
+            ['user_id','=',$user_id],
+            ['year','=',$year]
+        ])->count();
+    }
+    public static function monthTotalWorks($user_id,$month){
+        return MyWork::where([
+            ['user_id','=',$user_id],
+            ['month','=',$month]
+        ])->count();
     }
 }

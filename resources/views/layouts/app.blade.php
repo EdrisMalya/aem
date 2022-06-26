@@ -16,6 +16,7 @@
     {{$css??''}}
 </head>
 <body>
+    <div id="wait_for_response" style="display: none"></div>
     {{$slot}}
     <title>{{ $title ?? config('app.name', 'Laravel') }}</title>
     @livewireScripts
